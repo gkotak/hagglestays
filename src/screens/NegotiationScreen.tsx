@@ -36,29 +36,30 @@ const NegotiationScreen = ({ hotels, onChooseDeal }: Props) => {
   const advanceStatus = useCallback(() => {
     setNegotiations((prev) => {
       const next = [...prev];
-      // Find first non-terminal hotel
+      let changed = false;
       for (let i = 0; i < next.length; i++) {
         const n = next[i];
         if (n.status === "deal_ready" || n.status === "no_deal") continue;
         const idx = statusSequence.indexOf(n.status);
         if (idx < statusSequence.length - 1) {
           next[i] = { ...n, status: statusSequence[idx + 1] };
-          return next;
+          changed = true;
+          continue;
         }
-        // Terminal: randomly deal or no deal (bias towards deal)
+        // Terminal: last hotel always gets no_deal, rest get deals
         const bestOta = Math.min(...n.hotel.otaPrices.map((o) => o.price));
-        const isDeal = Math.random() > 0.3;
-        if (isDeal) {
+        const isLastHotel = i === next.length - 1;
+        if (isLastHotel) {
+          next[i] = { ...n, status: "no_deal" };
+        } else {
           const negotiatedPrice = n.hotel.estimatedNegotiatedPrice + Math.round((Math.random() - 0.5) * 10);
           const saving = bestOta - negotiatedPrice;
           const fee = Math.max(5, Math.round(saving * 0.35));
           next[i] = { ...n, status: "deal_ready", negotiatedPrice, fee };
-        } else {
-          next[i] = { ...n, status: "no_deal" };
         }
-        return next;
+        changed = true;
       }
-      return prev;
+      return changed ? next : prev;
     });
   }, []);
 

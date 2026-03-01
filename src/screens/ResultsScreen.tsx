@@ -27,7 +27,7 @@ const ResultsScreen = ({ onSelect }: Props) => {
       <p className="font-mono-nav text-primary mb-2">Step 3 of 6</p>
       <h1 className="text-3xl font-bold mb-1">Hotels with negotiation potential</h1>
       <p className="text-muted-foreground mb-8">
-        Select up to 3 hotels. We'll negotiate all of them in parallel.
+        Select up to 4 hotels. We'll negotiate all of them in parallel.
       </p>
 
       <div className="space-y-4">
