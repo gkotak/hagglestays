@@ -106,7 +106,7 @@ const SearchScreen = ({ onSearch }: Props) => {
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar mode="single" selected={checkIn} onSelect={setCheckIn} className="p-3 pointer-events-auto" />
+                  <Calendar mode="single" selected={checkIn} onSelect={setCheckIn} className="p-3 pointer-events-auto" disabled={mode === "lastminute" ? [{ before: new Date(), after: addDays(new Date(), 7) }] : { before: new Date() }} />
                 </PopoverContent>
               </Popover>
             </div>
