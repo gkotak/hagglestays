@@ -6,6 +6,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { CalendarIcon, Search, Phone, Zap, Shield, ArrowRight } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
+import heroResort from "@/assets/hero-resort.jpg";
 
 interface Props {
   onSearch: () => void;
@@ -20,20 +21,37 @@ const SearchScreen = ({ onSearch }: Props) => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero */}
-      <section className="container py-20 md:py-32">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="font-mono-nav mb-4 text-primary">AI-Powered Hotel Negotiation</p>
-          <h1 className="text-5xl font-extrabold leading-[1.08] tracking-tight md:text-7xl">
-            We call the hotel.{" "}
-            <span className="bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
-              You get a better price.
-            </span>
-          </h1>
-          <p className="mt-6 text-lg text-muted-foreground max-w-xl mx-auto">
-            Hotels pay OTAs up to 20% commission. We negotiate directly so you pocket the savings — and only charge if we win.
-          </p>
+      {/* Branded top bar for search page */}
+      <header className="absolute top-0 left-0 right-0 z-50 py-5">
+        <div className="container flex items-center gap-2">
+          <Phone className="h-5 w-5 text-primary-foreground" />
+          <span className="text-lg font-bold tracking-tight text-primary-foreground">HaggleStay</span>
         </div>
+      </header>
+
+      {/* Hero with background image */}
+      <section
+        className="relative flex items-center justify-center py-28 md:py-40"
+        style={{
+          backgroundImage: `url(${heroResort})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-foreground/60 via-foreground/40 to-foreground/70" />
+        <div className="relative z-10 container">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="font-mono-nav mb-4 text-primary-foreground/80">AI-Powered Hotel Negotiation</p>
+            <h1 className="text-5xl font-extrabold leading-[1.08] tracking-tight md:text-7xl text-primary-foreground">
+              We call the hotel.{" "}
+              <span className="bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+                You get a better price.
+              </span>
+            </h1>
+            <p className="mt-6 text-lg text-primary-foreground/80 max-w-xl mx-auto">
+              Hotels pay OTAs up to 20% commission. We negotiate directly so you pocket the savings — and only charge if we win.
+            </p>
+          </div>
 
         {/* Search Card */}
         <div className="mx-auto mt-12 max-w-2xl rounded-2xl border border-border bg-card p-6 shadow-lg">
@@ -119,6 +137,7 @@ const SearchScreen = ({ onSearch }: Props) => {
           >
             <Search className="mr-2 h-5 w-5" /> Find Deals We Can Negotiate
           </Button>
+        </div>
         </div>
       </section>
 
