@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { CalendarIcon, Search, Phone, Zap, Shield, ArrowRight } from "lucide-react";
-import { format } from "date-fns";
+import { format, addDays } from "date-fns";
 import { cn } from "@/lib/utils";
 import heroResort from "@/assets/hero-resort.jpg";
 
@@ -82,7 +82,7 @@ const SearchScreen = ({ onSearch }: Props) => {
           </div>
           {mode === "lastminute" && (
             <p className="mb-4 rounded-md bg-secondary px-3 py-2 text-xs text-primary font-medium">
-              ⚡ Highest success rate — unsold rooms within 72 hours are highly negotiable.
+              ⚡ Highest success rate — unsold rooms within 7 days are highly negotiable.
             </p>
           )}
 
@@ -106,7 +106,7 @@ const SearchScreen = ({ onSearch }: Props) => {
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar mode="single" selected={checkIn} onSelect={setCheckIn} className="p-3 pointer-events-auto" />
+                  <Calendar mode="single" selected={checkIn} onSelect={setCheckIn} className="p-3 pointer-events-auto" disabled={mode === "lastminute" ? [{ before: new Date(), after: addDays(new Date(), 7) }] : { before: new Date() }} />
                 </PopoverContent>
               </Popover>
             </div>
@@ -120,7 +120,7 @@ const SearchScreen = ({ onSearch }: Props) => {
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar mode="single" selected={checkOut} onSelect={setCheckOut} className="p-3 pointer-events-auto" />
+                  <Calendar mode="single" selected={checkOut} onSelect={setCheckOut} className="p-3 pointer-events-auto" disabled={mode === "lastminute" ? [{ before: checkIn || new Date(), after: addDays(new Date(), 7) }] : { before: checkIn || new Date() }} />
                 </PopoverContent>
               </Popover>
             </div>
