@@ -15,7 +15,7 @@ const ResultsScreen = ({ onSelect }: Props) => {
   const toggle = (id: string) => {
     setSelectedIds((prev) => {
       if (prev.includes(id)) return prev.filter((s) => s !== id);
-      if (prev.length >= 3) return prev;
+      if (prev.length >= 4) return prev;
       return [...prev, id];
     });
   };
