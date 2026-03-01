@@ -82,7 +82,7 @@ const SearchScreen = ({ onSearch }: Props) => {
           </div>
           {mode === "lastminute" && (
             <p className="mb-4 rounded-md bg-secondary px-3 py-2 text-xs text-primary font-medium">
-              ⚡ Highest success rate — unsold rooms within 72 hours are highly negotiable.
+              ⚡ Highest success rate — unsold rooms within 7 days are highly negotiable.
             </p>
           )}
 
