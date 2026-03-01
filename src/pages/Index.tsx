@@ -24,7 +24,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <HaggleStayNav currentStep={screenIndex[screen]} />
+      {screen !== "search" && <HaggleStayNav currentStep={screenIndex[screen]} />}
       {screen === "search" && <SearchScreen onSearch={() => setScreen("flexibility")} />}
       {screen === "flexibility" && (
         <FlexibilityScreen
