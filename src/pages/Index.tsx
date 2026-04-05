@@ -17,12 +17,22 @@ const screenIndex: Record<Screen, number> = {
 };
 
 const Index = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [screen, setScreen] = useState<Screen>("search");
   const [tradeOffs, setTradeOffs] = useState<string[]>([]);
   const [selectedHotels, setSelectedHotels] = useState<Hotel[]>([]);
   const [confirmedHotel, setConfirmedHotel] = useState<Hotel | null>(null);
   const [confirmedPrice, setConfirmedPrice] = useState(0);
   const [confirmedFee, setConfirmedFee] = useState(0);
+
+  const goToCommitment = () => {
+    if (!user) {
+      navigate("/sign-in");
+      return;
+    }
+    setScreen("commitment");
+  };
 
   return (
     <div className="min-h-screen bg-background">
