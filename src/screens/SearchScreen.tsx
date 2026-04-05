@@ -25,9 +25,16 @@ const SearchScreen = ({ onSearch }: Props) => {
     <div className="min-h-screen">
       {/* Branded top bar for search page */}
       <header className="absolute top-0 left-0 right-0 z-50 py-5">
-        <div className="container flex items-center gap-2">
-          <Phone className="h-5 w-5 text-primary-foreground" />
-          <span className="text-lg font-bold tracking-tight text-primary-foreground">HaggleStay</span>
+        <div className="container flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Phone className="h-5 w-5 text-primary-foreground" />
+            <span className="text-lg font-bold tracking-tight text-primary-foreground">HaggleStay</span>
+          </div>
+          {!useAuth().user && (
+            <Link to="/sign-in" className="text-sm font-medium text-primary-foreground/90 hover:text-primary-foreground transition-colors">
+              Sign in
+            </Link>
+          )}
         </div>
       </header>
 
