@@ -50,7 +50,7 @@ const Index = () => {
         <ResultsScreen
           onSelect={(hotels) => {
             setSelectedHotels(hotels);
-            setScreen("commitment");
+            goToCommitment();
           }}
         />
       )}
