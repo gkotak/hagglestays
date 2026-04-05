@@ -31,7 +31,7 @@ const SearchScreen = ({ onSearch }: Props) => {
             <Phone className="h-5 w-5 text-primary-foreground" />
             <span className="text-lg font-bold tracking-tight text-primary-foreground">HaggleStay</span>
           </div>
-          {!useAuth().user && (
+          {!user && (
             <Link to="/sign-in" className="text-sm font-medium text-primary-foreground/90 hover:text-primary-foreground transition-colors">
               Sign in
             </Link>
