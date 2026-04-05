@@ -6,6 +6,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { CalendarIcon, Search, Phone, Zap, Shield, ArrowRight } from "lucide-react";
 import { format, addDays } from "date-fns";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 import heroResort from "@/assets/hero-resort.jpg";
 
 interface Props {
@@ -13,6 +15,7 @@ interface Props {
 }
 
 const SearchScreen = ({ onSearch }: Props) => {
+  const { user } = useAuth();
   const [mode, setMode] = useState<"lastminute" | "standard">("lastminute");
   const [destination, setDestination] = useState("London");
   const [checkIn, setCheckIn] = useState<Date>();
@@ -23,9 +26,16 @@ const SearchScreen = ({ onSearch }: Props) => {
     <div className="min-h-screen">
       {/* Branded top bar for search page */}
       <header className="absolute top-0 left-0 right-0 z-50 py-5">
-        <div className="container flex items-center gap-2">
-          <Phone className="h-5 w-5 text-primary-foreground" />
-          <span className="text-lg font-bold tracking-tight text-primary-foreground">HaggleStay</span>
+        <div className="container flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Phone className="h-5 w-5 text-primary-foreground" />
+            <span className="text-lg font-bold tracking-tight text-primary-foreground">HaggleStay</span>
+          </div>
+          {!user && (
+            <Link to="/sign-in" className="text-sm font-medium text-primary-foreground/90 hover:text-primary-foreground transition-colors">
+              Sign in
+            </Link>
+          )}
         </div>
       </header>
 

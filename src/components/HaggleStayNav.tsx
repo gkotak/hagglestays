@@ -39,15 +39,13 @@ const HaggleStayNav = ({ currentStep }: Props) => {
           {user ? (
             <>
               <span className="text-sm text-muted-foreground hidden sm:inline">{user.email}</span>
-              <Button variant="ghost" size="sm" onClick={signOut} className="gap-1.5">
-                <LogOut className="h-4 w-4" /> Sign out
-              </Button>
+              <button onClick={signOut} className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+                Sign out
+              </button>
             </>
           ) : (
-            <Link to="/sign-in">
-              <Button variant="ghost" size="sm" className="gap-1.5">
-                <LogIn className="h-4 w-4" /> Sign in
-              </Button>
+            <Link to="/sign-in" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+              Sign in
             </Link>
           )}
         </div>
