@@ -15,6 +15,7 @@ interface Props {
 }
 
 const SearchScreen = ({ onSearch }: Props) => {
+  const { user } = useAuth();
   const [mode, setMode] = useState<"lastminute" | "standard">("lastminute");
   const [destination, setDestination] = useState("London");
   const [checkIn, setCheckIn] = useState<Date>();
