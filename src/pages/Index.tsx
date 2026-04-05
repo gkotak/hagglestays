@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import HaggleStayNav from "@/components/HaggleStayNav";
 import SearchScreen from "@/screens/SearchScreen";
 import FlexibilityScreen from "@/screens/FlexibilityScreen";
@@ -7,6 +8,7 @@ import CommitmentScreen from "@/screens/CommitmentScreen";
 import NegotiationScreen from "@/screens/NegotiationScreen";
 import ConfirmationScreen from "@/screens/ConfirmationScreen";
 import { Hotel } from "@/data/mockData";
+import { useAuth } from "@/contexts/AuthContext";
 
 type Screen = "search" | "flexibility" | "results" | "commitment" | "negotiation" | "confirmation";
 
@@ -15,12 +17,22 @@ const screenIndex: Record<Screen, number> = {
 };
 
 const Index = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [screen, setScreen] = useState<Screen>("search");
   const [tradeOffs, setTradeOffs] = useState<string[]>([]);
   const [selectedHotels, setSelectedHotels] = useState<Hotel[]>([]);
   const [confirmedHotel, setConfirmedHotel] = useState<Hotel | null>(null);
   const [confirmedPrice, setConfirmedPrice] = useState(0);
   const [confirmedFee, setConfirmedFee] = useState(0);
+
+  const goToCommitment = () => {
+    if (!user) {
+      navigate("/sign-in");
+      return;
+    }
+    setScreen("commitment");
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -38,7 +50,7 @@ const Index = () => {
         <ResultsScreen
           onSelect={(hotels) => {
             setSelectedHotels(hotels);
-            setScreen("commitment");
+            goToCommitment();
           }}
         />
       )}
