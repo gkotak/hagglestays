@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "HaggleStay – Hotel Price Negotiator",
+  "version": "1.0.0",
+  "description": "Select hotels from any booking site and let our AI negotiate a better price by calling the hotel directly.",
+  "permissions": ["activeTab", "storage", "tabs"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "icon-48.png",
+      "128": "icon-128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.booking.com/*",
+        "*://*.hotels.com/*",
+        "*://*.expedia.com/*",
+        "*://*.agoda.com/*",
+        "*://*.kayak.com/*",
+        "*://*.google.com/travel/*",
+        "*://*.google.com/search*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  }
+}
