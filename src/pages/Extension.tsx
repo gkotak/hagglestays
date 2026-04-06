@@ -75,6 +75,18 @@ const Extension = () => {
               <Button
                 size="lg"
                 className="h-14 px-8 text-base bg-gradient-to-r from-primary to-primary-glow hover:opacity-90 transition-opacity"
+                onClick={() => {
+                  fetch("/hagglestay-extension.zip")
+                    .then(r => { if (!r.ok) throw new Error("Download failed"); return r.blob(); })
+                    .then(blob => {
+                      const a = document.createElement("a");
+                      a.href = URL.createObjectURL(blob);
+                      a.download = "hagglestay-extension.zip";
+                      a.click();
+                      URL.revokeObjectURL(a.href);
+                    })
+                    .catch(e => alert(e.message));
+                }}
               >
                 <Chrome className="mr-2 h-5 w-5" />
                 Add to Chrome — It's Free
