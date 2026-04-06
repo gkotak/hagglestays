@@ -1,0 +1,24 @@
+.hagglestay-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #ec4899, #db2777);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  transition: opacity 0.15s, transform 0.1s;
+  z-index: 9999;
+}
+.hagglestay-btn:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+.hagglestay-btn--selected {
+  background: #22c55e;
+  cursor: default;
+}

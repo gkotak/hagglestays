@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="popup.css" />
+  <title>HaggleStay</title>
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>HaggleStay</span>
+      </div>
+      <div class="header-right">
+        <span class="site-badge" id="siteBadge">—</span>
+      </div>
+    </header>
+
+    <!-- Empty state -->
+    <div id="emptyState" class="state-panel">
+      <div class="empty-icon">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </div>
+      <h2>No hotels selected yet</h2>
+      <p>Browse hotel search results on this page and click the <strong>"Haggle this"</strong> button next to any hotel you're interested in.</p>
+      <div class="capacity">
+        <div class="capacity-dots">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>
+        <span class="capacity-label">0 / 5 selected</span>
+      </div>
+    </div>
+
+    <!-- Hotels selected state -->
+    <div id="selectedState" class="state-panel" style="display:none;">
+      <div class="selected-header">
+        <h2>Your shortlist</h2>
+        <div class="capacity">
+          <div class="capacity-dots" id="capacityDots"></div>
+          <span class="capacity-label" id="capacityLabel">0 / 5</span>
+        </div>
+      </div>
+
+      <ul class="hotel-list" id="hotelList"></ul>
+
+      <div class="date-section">
+        <div class="date-row">
+          <div class="date-field">
+            <label>Check-in</label>
+            <span id="checkIn">—</span>
+          </div>
+          <div class="date-field">
+            <label>Check-out</label>
+            <span id="checkOut">—</span>
+          </div>
+          <div class="date-field">
+            <label>Guests</label>
+            <span id="guests">—</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-primary" id="negotiateBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Start Negotiating
+      </button>
+      <p class="disclaimer">We only charge if we beat the published price.</p>
+    </div>
+
+    <!-- Negotiating state -->
+    <div id="negotiatingState" class="state-panel" style="display:none;">
+      <div class="selected-header">
+        <h2>Negotiating…</h2>
+        <button class="btn-text" id="backBtn">← Back</button>
+      </div>
+      <ul class="hotel-list" id="negotiatingList"></ul>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <p class="progress-label" id="progressLabel">Calling hotels…</p>
+    </div>
+
+    <!-- Results state -->
+    <div id="resultsState" class="state-panel" style="display:none;">
+      <div class="results-banner success">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <div>
+          <strong id="resultTitle">We found savings!</strong>
+          <p id="resultSubtitle">2 of 3 hotels offered a better rate.</p>
+        </div>
+      </div>
+      <ul class="hotel-list" id="resultsList"></ul>
+      <button class="btn-primary" id="viewDealsBtn">View Best Deals</button>
+      <button class="btn-secondary" id="resetBtn">Start New Search</button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <a href="https://hagglestays.lovable.app" target="_blank">hagglestay.com</a>
+      <span>·</span>
+      <a href="https://hagglestays.lovable.app/extension" target="_blank">How it works</a>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
