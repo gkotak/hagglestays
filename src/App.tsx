@@ -27,6 +27,7 @@ const App = () => (
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/activation" element={<Activation />} />
+            <Route path="/extension" element={<Extension />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
