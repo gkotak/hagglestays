@@ -8,6 +8,7 @@ const supportedSites = [
   { name: "Hotels.com", color: "bg-red-600" },
   { name: "Expedia", color: "bg-yellow-500" },
   { name: "Agoda", color: "bg-purple-600" },
+  { name: "Kayak", color: "bg-orange-500" },
   { name: "Google Search", color: "bg-emerald-500" },
 ];
 
@@ -54,7 +55,7 @@ const Extension = () => {
           backgroundPosition: "center",
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-foreground/70 via-foreground/50 to-foreground/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-foreground/60 via-foreground/40 to-foreground/70" />
         <div className="relative z-10 container">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-4 py-1.5 mb-6 backdrop-blur-sm">
@@ -82,32 +83,34 @@ const Extension = () => {
                 size="lg"
                 variant="outline"
                 className="h-14 px-8 text-base border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
+                onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}
               >
                 See how it works
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
+
+            {/* Supported sites - inside hero */}
+            <div className="mt-10">
+              <p className="text-sm font-medium text-primary-foreground/60 mb-3">Works with your favourite booking sites</p>
+              <div className="flex flex-wrap gap-2.5 items-center">
+                {supportedSites.map((site) => (
+                  <div
+                    key={site.name}
+                    className="flex items-center gap-2 rounded-lg border border-primary-foreground/15 bg-primary-foreground/10 backdrop-blur-sm px-3.5 py-2"
+                  >
+                    <div className={`h-2 w-2 rounded-full ${site.color}`} />
+                    <span className="text-sm font-medium text-primary-foreground/90">{site.name}</span>
+                  </div>
+                ))}
+                <span className="text-sm text-primary-foreground/50 ml-1">& most other travel sites</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Supported sites */}
-      <div className="relative z-20 container -mt-8">
-        <div className="rounded-xl border border-border bg-card p-6 shadow-xl">
-          <p className="text-sm font-medium text-muted-foreground mb-4 text-center">Works with your favourite booking sites</p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {supportedSites.map((site) => (
-              <div
-                key={site.name}
-                className="flex items-center gap-2 rounded-lg border border-border bg-muted/50 px-4 py-2.5"
-              >
-                <div className={`h-2.5 w-2.5 rounded-full ${site.color}`} />
-                <span className="text-sm font-medium text-foreground">{site.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      {/* Value prop cards */}
 
       {/* Value prop cards */}
       <section className="bg-background pt-14 pb-12">
@@ -131,7 +134,7 @@ const Extension = () => {
       </section>
 
       {/* How it works */}
-      <section className="border-t border-border bg-muted/50 py-20">
+      <section id="how-it-works" className="border-t border-border bg-muted/50 py-20">
         <div className="container">
           <p className="text-center text-primary font-medium mb-2">How the extension works</p>
           <h2 className="text-3xl font-bold text-center mb-4">Start your search anywhere</h2>
