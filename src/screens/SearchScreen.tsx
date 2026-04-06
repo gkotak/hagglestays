@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { CalendarIcon, Search, Phone, Zap, Shield, ArrowRight } from "lucide-react";
-import { format, addDays } from "date-fns";
+import { CalendarIcon, Search, Phone, Shield } from "lucide-react";
+import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
@@ -16,7 +16,6 @@ interface Props {
 
 const SearchScreen = ({ onSearch }: Props) => {
   const { user } = useAuth();
-  const [mode, setMode] = useState<"lastminute" | "standard">("lastminute");
   const [destination, setDestination] = useState("London");
   const [checkIn, setCheckIn] = useState<Date>();
   const [checkOut, setCheckOut] = useState<Date>();
@@ -59,94 +58,87 @@ const SearchScreen = ({ onSearch }: Props) => {
               </span>
             </h1>
             <p className="mt-6 text-lg text-primary-foreground/80 max-w-xl mx-auto">
-              Hotels pay OTAs up to 20% commission. We negotiate directly so you pocket the savings — and only charge if we win.
+              We negotiate directly with hotels, and only charge a small fee if they agree to a better price
             </p>
           </div>
 
-        {/* Search Card */}
-        <div className="mx-auto mt-12 max-w-2xl rounded-2xl border border-border bg-card p-6 shadow-lg">
-          {/* Mode Toggle */}
-          <div className="mb-6 flex rounded-lg bg-muted p-1">
-            <button
-              onClick={() => setMode("lastminute")}
-              className={cn(
-                "flex-1 rounded-md py-2.5 text-sm font-medium transition-all",
-                mode === "lastminute"
-                  ? "bg-primary text-primary-foreground shadow-sm"
-                  : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              <Zap className="inline h-4 w-4 mr-1 -mt-0.5" /> Last-Minute Mode
-            </button>
-            <button
-              onClick={() => setMode("standard")}
-              className={cn(
-                "flex-1 rounded-md py-2.5 text-sm font-medium transition-all",
-                mode === "standard"
-                  ? "bg-primary text-primary-foreground shadow-sm"
-                  : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              Standard Mode
-            </button>
-          </div>
-          {mode === "lastminute" && (
-            <p className="mb-4 rounded-md bg-secondary px-3 py-2 text-xs text-primary font-medium">
-              ⚡ Highest success rate — unsold rooms within 7 days are highly negotiable.
-            </p>
-          )}
+        {/* Two-column: Search + Why it works */}
+        <div className="mx-auto mt-12 max-w-5xl grid gap-6 md:grid-cols-2">
+          {/* Search Card */}
+          <div className="rounded-2xl border border-border bg-card p-6 shadow-lg">
+            <div className="grid gap-3">
+              <div>
+                <label className="text-xs font-medium text-muted-foreground mb-1 block">Destination</label>
+                <Input
+                  placeholder="City or neighbourhood"
+                  value={destination}
+                  onChange={(e) => setDestination(e.target.value)}
+                  className="h-12"
+                />
+              </div>
+              <div className="grid gap-3 grid-cols-2">
+                <div>
+                  <label className="text-xs font-medium text-muted-foreground mb-1 block">Check-in</label>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button variant="outline" className={cn("w-full h-12 justify-start font-normal", !checkIn && "text-muted-foreground")}>
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {checkIn ? format(checkIn, "PPP") : "Select date"}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar mode="single" selected={checkIn} onSelect={setCheckIn} className="p-3 pointer-events-auto" disabled={{ before: new Date() }} />
+                    </PopoverContent>
+                  </Popover>
+                </div>
+                <div>
+                  <label className="text-xs font-medium text-muted-foreground mb-1 block">Check-out</label>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button variant="outline" className={cn("w-full h-12 justify-start font-normal", !checkOut && "text-muted-foreground")}>
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {checkOut ? format(checkOut, "PPP") : "Select date"}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar mode="single" selected={checkOut} onSelect={setCheckOut} className="p-3 pointer-events-auto" disabled={{ before: checkIn || new Date() }} />
+                    </PopoverContent>
+                  </Popover>
+                </div>
+              </div>
+              <div>
+                <label className="text-xs font-medium text-muted-foreground mb-1 block">Guests & Rooms</label>
+                <Input value={guests} onChange={(e) => setGuests(e.target.value)} className="h-12" />
+              </div>
+            </div>
 
-          <div className="grid gap-3 md:grid-cols-2">
-            <div className="md:col-span-2">
-              <label className="text-xs font-medium text-muted-foreground mb-1 block">Destination</label>
-              <Input
-                placeholder="City or neighbourhood"
-                value={destination}
-                onChange={(e) => setDestination(e.target.value)}
-                className="h-12"
-              />
-            </div>
-            <div>
-              <label className="text-xs font-medium text-muted-foreground mb-1 block">Check-in</label>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button variant="outline" className={cn("w-full h-12 justify-start font-normal", !checkIn && "text-muted-foreground")}>
-                    <CalendarIcon className="mr-2 h-4 w-4" />
-                    {checkIn ? format(checkIn, "PPP") : "Select date"}
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar mode="single" selected={checkIn} onSelect={setCheckIn} className="p-3 pointer-events-auto" disabled={mode === "lastminute" ? [{ before: new Date(), after: addDays(new Date(), 7) }] : { before: new Date() }} />
-                </PopoverContent>
-              </Popover>
-            </div>
-            <div>
-              <label className="text-xs font-medium text-muted-foreground mb-1 block">Check-out</label>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button variant="outline" className={cn("w-full h-12 justify-start font-normal", !checkOut && "text-muted-foreground")}>
-                    <CalendarIcon className="mr-2 h-4 w-4" />
-                    {checkOut ? format(checkOut, "PPP") : "Select date"}
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar mode="single" selected={checkOut} onSelect={setCheckOut} className="p-3 pointer-events-auto" disabled={{ before: checkIn || new Date() }} />
-                </PopoverContent>
-              </Popover>
-            </div>
-            <div className="md:col-span-2">
-              <label className="text-xs font-medium text-muted-foreground mb-1 block">Guests & Rooms</label>
-              <Input value={guests} onChange={(e) => setGuests(e.target.value)} className="h-12" />
-            </div>
+            <Button
+              size="lg"
+              className="mt-6 w-full h-13 text-base bg-gradient-to-r from-primary to-primary-glow hover:opacity-90 transition-opacity"
+              onClick={onSearch}
+            >
+              <Search className="mr-2 h-5 w-5" /> Find Deals We Can Negotiate
+            </Button>
           </div>
 
-          <Button
-            size="lg"
-            className="mt-6 w-full h-13 text-base bg-gradient-to-r from-primary to-primary-glow hover:opacity-90 transition-opacity"
-            onClick={onSearch}
-          >
-            <Search className="mr-2 h-5 w-5" /> Find Deals We Can Negotiate
-          </Button>
+          {/* Why it works Card */}
+          <div className="rounded-2xl border border-border bg-card/80 backdrop-blur-sm p-6 shadow-lg flex flex-col justify-center">
+            <h3 className="text-lg font-bold text-foreground mb-1">Hotels pay OTAs up to 25% commission</h3>
+            <p className="text-sm text-muted-foreground mb-4">So there is wiggle room, especially for:</p>
+            <ul className="space-y-3">
+              {[
+                "Unsold rooms for last-minute bookings",
+                "Long-stays or multi-room bookings",
+                "Flexible guests (late check-in, lower floor, skip the daily clean)",
+                "No savings on rate? They'll offer upgrades, dining credit, or gifts instead",
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-2.5 text-sm text-foreground">
+                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary text-xs font-bold">✓</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
         </div>
       </section>
