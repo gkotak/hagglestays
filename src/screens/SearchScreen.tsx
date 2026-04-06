@@ -56,68 +56,83 @@ const SearchScreen = ({ onSearch }: Props) => {
                 You get a better price.
               </span>
             </h1>
-            <p className="mt-4 text-lg text-primary-foreground/80 max-w-xl">
+            <p className="mt-4 text-lg text-primary-foreground/80 max-w-2xl">
               We negotiate directly with hotels, and only charge a small fee if they agree to a better price
             </p>
-          </div>
-
-          {/* Inline search bar */}
-          <div className="mt-8 rounded-xl border border-border bg-card p-3 shadow-xl">
-            <div className="flex flex-col md:flex-row gap-2 items-stretch">
-              <div className="flex-1 min-w-0">
-                <Input
-                  placeholder="Where are you going?"
-                  value={destination}
-                  onChange={(e) => setDestination(e.target.value)}
-                  className="h-12 border-0 bg-muted/50 focus-visible:ring-1"
-                />
-              </div>
-              <div className="flex gap-2 flex-1">
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button variant="outline" className={cn("flex-1 h-12 justify-start font-normal bg-muted/50 border-0", !checkIn && "text-muted-foreground")}>
-                      <CalendarIcon className="mr-2 h-4 w-4 shrink-0" />
-                      <span className="truncate">{checkIn ? format(checkIn, "MMM d") : "Check-in"}</span>
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar mode="single" selected={checkIn} onSelect={setCheckIn} className="p-3 pointer-events-auto" disabled={{ before: new Date() }} />
-                  </PopoverContent>
-                </Popover>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button variant="outline" className={cn("flex-1 h-12 justify-start font-normal bg-muted/50 border-0", !checkOut && "text-muted-foreground")}>
-                      <CalendarIcon className="mr-2 h-4 w-4 shrink-0" />
-                      <span className="truncate">{checkOut ? format(checkOut, "MMM d") : "Check-out"}</span>
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar mode="single" selected={checkOut} onSelect={setCheckOut} className="p-3 pointer-events-auto" disabled={{ before: checkIn || new Date() }} />
-                  </PopoverContent>
-                </Popover>
-              </div>
-              <div className="flex-1 min-w-0">
-                <Input value={guests} onChange={(e) => setGuests(e.target.value)} className="h-12 border-0 bg-muted/50 focus-visible:ring-1" />
-              </div>
-              <Button
-                size="lg"
-                className="h-12 px-8 text-base bg-gradient-to-r from-primary to-primary-glow hover:opacity-90 transition-opacity shrink-0"
-                onClick={onSearch}
-              >
-                <Search className="mr-2 h-5 w-5" /> Search
-              </Button>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* Value prop cards */}
-      <section className="border-t border-border bg-background py-12">
+      {/* Search bar straddling hero/content border */}
+      <div className="relative z-20 container -mt-7">
+        <div className="rounded-xl border border-border bg-card p-3 shadow-xl">
+          <div className="flex flex-col md:flex-row gap-2 items-stretch">
+            <div className="flex-1 min-w-0">
+              <Input
+                placeholder="Where are you going?"
+                value={destination}
+                onChange={(e) => setDestination(e.target.value)}
+                className="h-12 border-0 bg-muted/50 focus-visible:ring-1"
+              />
+            </div>
+            <div className="flex gap-2 flex-1">
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="outline" className={cn("flex-1 h-12 justify-start font-normal bg-muted/50 border-0", !checkIn && "text-muted-foreground")}>
+                    <CalendarIcon className="mr-2 h-4 w-4 shrink-0" />
+                    <span className="truncate">{checkIn ? format(checkIn, "MMM d") : "Check-in"}</span>
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0" align="start">
+                  <Calendar mode="single" selected={checkIn} onSelect={setCheckIn} className="p-3 pointer-events-auto" disabled={{ before: new Date() }} />
+                </PopoverContent>
+              </Popover>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="outline" className={cn("flex-1 h-12 justify-start font-normal bg-muted/50 border-0", !checkOut && "text-muted-foreground")}>
+                    <CalendarIcon className="mr-2 h-4 w-4 shrink-0" />
+                    <span className="truncate">{checkOut ? format(checkOut, "MMM d") : "Check-out"}</span>
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0" align="start">
+                  <Calendar mode="single" selected={checkOut} onSelect={setCheckOut} className="p-3 pointer-events-auto" disabled={{ before: checkIn || new Date() }} />
+                </PopoverContent>
+              </Popover>
+            </div>
+            <div className="flex-1 min-w-0">
+              <Input value={guests} onChange={(e) => setGuests(e.target.value)} className="h-12 border-0 bg-muted/50 focus-visible:ring-1" />
+            </div>
+            <Button
+              size="lg"
+              className="h-12 px-8 text-base bg-gradient-to-r from-primary to-primary-glow hover:opacity-90 transition-opacity shrink-0"
+              onClick={onSearch}
+            >
+              <Search className="mr-2 h-5 w-5" /> Search
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* Value prop section */}
+      <section className="bg-background pt-14 pb-12">
         <div className="container">
-          <h2 className="text-xl font-bold mb-6">Why HaggleStay?</h2>
-          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+          <h3 className="text-lg font-bold text-foreground mb-1">Hotels pay OTAs up to 25% commission</h3>
+          <p className="text-sm text-muted-foreground mb-4">So there is wiggle room, especially for:</p>
+          <ul className="space-y-3 max-w-2xl">
             {[
-              {
+              "Unsold rooms for last-minute bookings",
+              "Long-stays or multi-room bookings",
+              "Flexible guests (late check-in, lower floor, skip the daily clean)",
+              "No savings on rate? They'll offer upgrades, dining credit, or gifts instead",
+            ].map((item, i) => (
+              <li key={i} className="flex items-start gap-2.5 text-sm text-foreground">
+                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary text-xs font-bold">✓</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
                 icon: <Clock className="h-7 w-7 text-primary" />,
                 title: "Unsold rooms, better deals",
                 desc: "Last-minute vacancies mean hotels are willing to negotiate.",
