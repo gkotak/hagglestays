@@ -134,7 +134,7 @@ const Extension = () => {
       </section>
 
       {/* How it works */}
-      <section className="border-t border-border bg-muted/50 py-20">
+      <section id="how-it-works" className="border-t border-border bg-muted/50 py-20">
         <div className="container">
           <p className="text-center text-primary font-medium mb-2">How the extension works</p>
           <h2 className="text-3xl font-bold text-center mb-4">Start your search anywhere</h2>
