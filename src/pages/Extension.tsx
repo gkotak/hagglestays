@@ -8,6 +8,7 @@ const supportedSites = [
   { name: "Hotels.com", color: "bg-red-600" },
   { name: "Expedia", color: "bg-yellow-500" },
   { name: "Agoda", color: "bg-purple-600" },
+  { name: "Kayak", color: "bg-orange-500" },
   { name: "Google Search", color: "bg-emerald-500" },
 ];
 
