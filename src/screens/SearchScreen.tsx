@@ -133,35 +133,7 @@ const SearchScreen = ({ onSearch }: Props) => {
           </ul>
         </div>
       </section>
-                icon: <Clock className="h-7 w-7 text-primary" />,
-                title: "Unsold rooms, better deals",
-                desc: "Last-minute vacancies mean hotels are willing to negotiate.",
-              },
-              {
-                icon: <Bed className="h-7 w-7 text-primary" />,
-                title: "Long stays & multi-room",
-                desc: "Bigger bookings give us more leverage to get you a discount.",
-              },
-              {
-                icon: <Shield className="h-7 w-7 text-primary" />,
-                title: "Only pay if we win",
-                desc: "No savings? No charge. We only earn when you save.",
-              },
-              {
-                icon: <Gift className="h-7 w-7 text-primary" />,
-                title: "Upgrades & perks",
-                desc: "No rate cut? Hotels often offer upgrades, dining credit, or gifts.",
-              },
-            ].map((card, i) => (
-              <div key={i} className="rounded-xl border border-border bg-card p-5">
-                <div className="mb-3">{card.icon}</div>
-                <h3 className="font-semibold text-foreground mb-1">{card.title}</h3>
-                <p className="text-sm text-muted-foreground">{card.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* How it works */}
       <section className="border-t border-border bg-muted/50 py-20">
