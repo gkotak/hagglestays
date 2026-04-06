@@ -9,6 +9,7 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import ForgotPassword from "./pages/ForgotPassword";
 import Activation from "./pages/Activation";
+import Extension from "./pages/Extension";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
