@@ -83,6 +83,7 @@ const Extension = () => {
                 size="lg"
                 variant="outline"
                 className="h-14 px-8 text-base border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
+                onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}
               >
                 See how it works
                 <ArrowRight className="ml-2 h-4 w-4" />
