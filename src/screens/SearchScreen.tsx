@@ -113,24 +113,36 @@ const SearchScreen = ({ onSearch }: Props) => {
         </div>
       </div>
 
-      {/* Value prop section */}
+      {/* Value prop cards */}
       <section className="bg-background pt-14 pb-12">
         <div className="container">
-          <h3 className="text-lg font-bold text-foreground mb-1">Hotels pay OTAs up to 25% commission</h3>
-          <p className="text-sm text-muted-foreground mb-4">So there is wiggle room, especially for:</p>
-          <ul className="space-y-3 max-w-2xl">
+          <h2 className="text-xl font-bold mb-1">Hotels pay OTAs up to 25% commission</h2>
+          <p className="text-sm text-muted-foreground mb-6">So there is wiggle room, especially for:</p>
+          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              "Unsold rooms for last-minute bookings",
-              "Long-stays or multi-room bookings",
-              "Flexible guests (late check-in, lower floor, skip the daily clean)",
-              "No savings on rate? They'll offer upgrades, dining credit, or gifts instead",
-            ].map((item, i) => (
-              <li key={i} className="flex items-start gap-2.5 text-sm text-foreground">
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary text-xs font-bold">✓</span>
-                {item}
-              </li>
+              {
+                icon: <Clock className="h-7 w-7 text-primary" />,
+                title: "Unsold rooms for last-minute bookings",
+              },
+              {
+                icon: <Bed className="h-7 w-7 text-primary" />,
+                title: "Long-stays or multi-room bookings",
+              },
+              {
+                icon: <Shield className="h-7 w-7 text-primary" />,
+                title: "Flexible guests (late check-in, lower floor, skip the daily clean)",
+              },
+              {
+                icon: <Gift className="h-7 w-7 text-primary" />,
+                title: "No savings on rate? They'll offer upgrades, dining credit, or gifts instead",
+              },
+            ].map((card, i) => (
+              <div key={i} className="rounded-xl border border-border bg-card p-5">
+                <div className="mb-3">{card.icon}</div>
+                <p className="text-sm font-medium text-foreground">{card.title}</p>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
 
