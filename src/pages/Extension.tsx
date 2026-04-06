@@ -93,23 +93,7 @@ const Extension = () => {
         </div>
       </section>
 
-      {/* Supported sites */}
-      <div className="relative z-20 container -mt-8">
-        <div className="rounded-xl border border-border bg-card p-6 shadow-xl">
-          <p className="text-sm font-medium text-muted-foreground mb-4 text-center">Works with your favourite booking sites</p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {supportedSites.map((site) => (
-              <div
-                key={site.name}
-                className="flex items-center gap-2 rounded-lg border border-border bg-muted/50 px-4 py-2.5"
-              >
-                <div className={`h-2.5 w-2.5 rounded-full ${site.color}`} />
-                <span className="text-sm font-medium text-foreground">{site.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      {/* Value prop cards */}
 
       {/* Value prop cards */}
       <section className="bg-background pt-14 pb-12">
