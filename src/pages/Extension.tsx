@@ -89,6 +89,23 @@ const Extension = () => {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
+
+            {/* Supported sites - inside hero */}
+            <div className="mt-10">
+              <p className="text-sm font-medium text-primary-foreground/60 mb-3">Works with your favourite booking sites</p>
+              <div className="flex flex-wrap gap-2.5 items-center">
+                {supportedSites.map((site) => (
+                  <div
+                    key={site.name}
+                    className="flex items-center gap-2 rounded-lg border border-primary-foreground/15 bg-primary-foreground/10 backdrop-blur-sm px-3.5 py-2"
+                  >
+                    <div className={`h-2 w-2 rounded-full ${site.color}`} />
+                    <span className="text-sm font-medium text-primary-foreground/90">{site.name}</span>
+                  </div>
+                ))}
+                <span className="text-sm text-primary-foreground/50 ml-1">& most other travel sites</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
