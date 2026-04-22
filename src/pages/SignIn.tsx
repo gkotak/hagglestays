@@ -36,7 +36,7 @@ const SignIn = () => {
         <div className="container flex h-16 items-center">
           <Link to="/" className="flex items-center gap-2">
             <Phone className="h-5 w-5 text-primary" />
-            <span className="text-lg font-bold tracking-tight">HaggleStay</span>
+            <span className="text-lg font-bold tracking-tight">Great Deal</span>
           </Link>
         </div>
       </header>
@@ -45,7 +45,7 @@ const SignIn = () => {
         <div className="w-full max-w-sm space-y-6">
           <div className="text-center">
             <h1 className="text-2xl font-bold tracking-tight">Welcome back</h1>
-            <p className="text-sm text-muted-foreground mt-1">Sign in to your HaggleStay account</p>
+            <p className="text-sm text-muted-foreground mt-1">Sign in to your Great Deal account</p>
           </div>
 
           <Button

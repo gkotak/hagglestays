@@ -96,7 +96,7 @@ const CommitmentScreen = ({ hotels, tradeOffs, onCommit }: Props) => {
             <h3 className="font-semibold">Payment details</h3>
           </div>
           <p className="text-xs text-muted-foreground mb-4">
-            Your card will only be charged for HaggleStay's success fee. You pay the hotel directly.
+            Your card will only be charged for Great Deal's success fee. You pay the hotel directly.
           </p>
           <div className="grid gap-3 md:grid-cols-2">
             <Input placeholder="Card number" className="h-11" defaultValue="4242 4242 4242 4242" />
@@ -129,7 +129,7 @@ const CommitmentScreen = ({ hotels, tradeOffs, onCommit }: Props) => {
           <div>
             <p className="text-sm font-semibold mb-1">How booking completion works</p>
             <p className="text-xs text-muted-foreground leading-relaxed">
-              When we secure your deal, we give the hotel a HaggleStay email address to send your confirmation to.
+              When we secure your deal, we give the hotel a Great Deal email address to send your confirmation to.
               We'll forward it to you immediately, wrapped with your deal summary and our fee.
               You then complete payment directly with the hotel using the link or instructions in that email — we never touch your hotel payment.
             </p>
@@ -146,7 +146,7 @@ const CommitmentScreen = ({ hotels, tradeOffs, onCommit }: Props) => {
           className="mt-0.5"
         />
         <label htmlFor="commit" className="text-sm leading-relaxed cursor-pointer">
-          I understand that if HaggleStay secures the target price or better, I am committed to completing the purchase.
+          I understand that if Great Deal secures the target price or better, I am committed to completing the purchase.
         </label>
       </div>
 
