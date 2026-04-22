@@ -61,7 +61,7 @@ const ConfirmationScreen = ({ hotel, negotiatedPrice, fee, onRestart }: Props) =
             <span className="font-semibold text-success">£{grossSaving}</span>
           </div>
           <div className="flex justify-between py-2 border-b border-border">
-            <span className="text-muted-foreground">HaggleStay fee</span>
+            <span className="text-muted-foreground">Great Deal fee</span>
             <span className="font-semibold">£{fee}</span>
           </div>
           <div className="flex justify-between py-2">
@@ -85,7 +85,7 @@ const ConfirmationScreen = ({ hotel, negotiatedPrice, fee, onRestart }: Props) =
           <div className="bg-muted px-6 py-3 border-b border-border">
             <p className="text-xs text-muted-foreground font-mono-nav">Email Preview</p>
             <p className="text-sm font-semibold mt-1">
-              Subject: Your HaggleStay deal is confirmed — {hotel.name}
+              Subject: Your Great Deal booking is confirmed — {hotel.name}
             </p>
           </div>
           <div className="p-6 text-sm space-y-4 leading-relaxed">

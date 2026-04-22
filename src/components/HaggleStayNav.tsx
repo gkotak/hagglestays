@@ -17,7 +17,7 @@ const HaggleStayNav = ({ currentStep }: Props) => {
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
           <Phone className="h-5 w-5 text-primary" />
-          <span className="text-lg font-bold tracking-tight">HaggleStay</span>
+          <span className="text-lg font-bold tracking-tight">Great Deal</span>
         </div>
         <nav className="hidden items-center gap-1 md:flex">
           {steps.map((s, i) => (

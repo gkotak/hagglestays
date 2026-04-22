@@ -21,7 +21,7 @@ const steps = [
   {
     num: "2",
     title: "Select up to 5 hotels",
-    desc: "Click the HaggleStay icon and pick the hotels you're interested in directly from the search results.",
+    desc: "Click the Great Deal icon and pick the hotels you're interested in directly from the search results.",
   },
   {
     num: "3",
@@ -38,7 +38,7 @@ const Extension = () => {
         <div className="container flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Phone className="h-5 w-5 text-primary-foreground" />
-            <span className="text-lg font-bold tracking-tight text-primary-foreground">HaggleStay</span>
+            <span className="text-lg font-bold tracking-tight text-primary-foreground">Great Deal</span>
           </div>
           <Link to="/sign-in" className="text-sm font-medium text-primary-foreground/90 hover:text-primary-foreground transition-colors">
             Sign in
@@ -224,9 +224,9 @@ const Extension = () => {
         <div className="container flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <Phone className="h-4 w-4 text-primary" />
-            <span className="text-sm font-semibold text-foreground">HaggleStay</span>
+            <span className="text-sm font-semibold text-foreground">Great Deal</span>
           </div>
-          <p className="text-xs text-muted-foreground">© 2026 HaggleStay. All rights reserved.</p>
+          <p className="text-xs text-muted-foreground">© 2026 Great Deal. All rights reserved.</p>
         </div>
       </footer>
     </div>
